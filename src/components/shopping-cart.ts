@@ -18,7 +18,7 @@ class ShoppingCart extends HTMLElement {
       <section class="shopping-cart">
         <h2>Carrito de Compras</h2>
         ${state.cart.length === 0 
-          ? '<p class="empty-cart">Tu carrito está vacío</p>'
+          ? '<p class="empty-cart">Que esperas para mejorar tu look!</p>'
           : `
             <div class="cart-items">
               ${state.cart.map(item => `
@@ -34,7 +34,7 @@ class ShoppingCart extends HTMLElement {
             </div>
             <div class="cart-summary">
               <p class="total">Total: $${total.toFixed(2)}</p>
-              <button class="checkout-button">Proceder al pago</button>
+              <button class="checkout-button">Mejorate! (proceder al pago)</button>
             </div>
           `
         }

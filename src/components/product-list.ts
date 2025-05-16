@@ -14,7 +14,7 @@ class ProductList extends HTMLElement {
   render() {
     const state = store.getState();
     
-    if (state.loading) {
+    if (state.loading && state.products.length === 0) {
       this.innerHTML = '<div class="loading">Cargando productos...</div>';
       return;
     }
@@ -26,7 +26,10 @@ class ProductList extends HTMLElement {
 
     this.innerHTML = `
       <section class="products-grid">
-        <h2>Nuestros Productos</h2>
+        <div class="products-header">
+          <h2>Lo más top!</h2>
+          ${state.loading ? '<span class="updating-indicator">🔄 Actualizando...</span>' : ''}
+        </div>
         <div class="products-container">
           ${state.products.map(product => `
             <div class="product-card">
@@ -34,7 +37,7 @@ class ProductList extends HTMLElement {
               <h3>${product.title}</h3>
               <p class="price">$${product.price}</p>
               <p class="rating">⭐ ${product.rating.rate} (${product.rating.count} reviews)</p>
-              <button class="add-to-cart">Añadir al carrito</button>
+              <button class="add-to-cart">Quiero añadirlo</button>
             </div>
           `).join('')}
         </div>
